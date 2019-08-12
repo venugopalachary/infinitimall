@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".MainActivity">
+
+    <!-- Header aligned to top -->
+
+    <include layout="@layout/header" />
+
+
+       <RelativeLayout
+           android:id="@+id/static1"
+           android:layout_marginTop="70dp"
+           android:layout_marginLeft="40dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+
+           <androidx.viewpager.widget.ViewPager
+               android:id="@+id/moviesviewPager"
+               android:layout_width="300dp"
+               android:layout_height="200dp"
+             />
+
+
+           <androidx.viewpager.widget.ViewPager
+               android:id="@+id/eventsviewPager"
+               android:layout_marginTop="10dp"
+               android:layout_below="@+id/moviesviewPager"
+               android:layout_width="300dp"
+               android:layout_height="200dp"
+               android:src="@drawable/posterk"/>
+
+           <ImageView
+               android:id="@+id/searchbarbutton"
+               android:layout_below="@+id/eventsviewPager"
+               android:layout_marginTop="10dp"
+               android:layout_width="300dp"
+               android:layout_height="200dp"
+               android:layout_marginBottom="30dp"
+               android:src="@drawable/aisearch"/>
+
+       </RelativeLayout>
+
+
+    <FrameLayout
+        android:layout_toRightOf="@id/static1"
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="10dp"
+        android:text="home"
+       />
+
+
+</RelativeLayout>

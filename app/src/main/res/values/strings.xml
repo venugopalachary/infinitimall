@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">infinitemall</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="apppromolink">https://www.play4deal.com/inorbitmall/apppromotion.php</string>
+    <string name="brandsList">https://www.play4deal.com/inorbitmall/brandslist.php</string>
+    <string name="filteredBrandsList">https://www.play4deal.com/inorbitmall/searchwisebrands.php</string>
+    <string name="GRID_URL">https://www.play4deal.com/androidapilv/gridapi/fetch_brands.php</string>
+
+    <!-- SLIDER ACTIVITY LINKS-->
+
+    <string name="POSTER_URL">https://www.play4deal.com/androidapilv/posterapi/poster.php</string>
+    <!-- SLIDER ACTIVITY LINKS-->
+    <string name="POSTER_ENDURL_NOTIFY">https://www.play4deal.com/androidapilv/posterapi/posterendnotify.php</string>
+
+    <!--  SPIN GAME ACTIVITY LINKS-->
+    <string name="FETCH_COUPONS_URL">https://www.play4deal.com/androidapilv/gameapi/spin_game.php</string>
+    <string name="USER_FORM_URL">https://www.play4deal.com/androidapilv/userdetails/usersdata.php</string>
+
+    <!--  DYANMIC CATEGORY SPIN GAME ACTIVITY LINKS-->
+    <string name="CATEGORY_WISE_BRANDS">https://www.play4deal.com/androidapilv/gameapi/category_wise_brands.php</string>
+    <string name="BRAND_WISE_COUPONS">https://www.play4deal.com/androidapilv/gameapi/categorywise_brand_coupons.php</string>
+    <string name="SECTOR_WISE_COUNTVALUE">https://www.play4deal.com/androidapilv/gameapi/sector_count.php</string>
+
+
+    <!--  SCRATCH GAME ACTIVITY LINKS-->
+    <string name="SCRATCH_URL">https://www.play4deal.com/androidapilv/gameapi/scratch_game.php</string>
+
+    <!-- OTP ACTIVITY LINKS-->
+    <string name="POSTERS_URL">https://www.play4deal.com/androidapilv/posterapi/otpvideobgthankyouposters.php</string>
+    <string name="THANK_YOU_POSTER_URL">https://www.play4deal.com/androidapilv/posterapi/otpvideobgthankyouposters.php</string>
+    <string name="OTP_VERIFY_URL">https://www.play4deal.com/androidapilv/userdetails/otpverify.php</string>
+
+    <!-- BRANDING ACTIVITY LINKS-->
+    <string name="VIDEOS_URL">https://www.play4deal.com/androidapilv/videobranding/brandvideos.php</string>
+    <string name="VIDEO_BG_POSTER_URL">https://www.play4deal.com/androidapilv/posterapi/otpvideobgthankyouposters.php</string>
+
+
+    <string name="DEAL_URL">"https://www.play4deal.com/inorbitmall/dealswisecoupon.php"</string>
+    <string name="CUSTOMER_DETAILS">"https://www.play4deal.com/inorbitmall/customerdetails.php"</string>
+</resources>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+    <RelativeLayout
+        android:id="@+id/static2"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/shopping"
+            android:layout_width="565dp"
+            android:layout_height="300dp"
+            android:src="@drawable/shopping"/>
+
+        <LinearLayout
+            android:layout_below="@+id/shopping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="2dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/dine"
+                android:layout_width="182dp"
+                android:layout_height="320dp"
+                android:src="@drawable/dine"/>
+
+            <ImageView
+                android:id="@+id/deals"
+                android:layout_marginLeft="10dp"
+                android:layout_width="182dp"
+                android:layout_height="320dp"
+                android:src="@drawable/deals"/>
+
+            <ImageView
+                android:id="@+id/exploremall"
+                android:layout_marginLeft="10dp"
+                android:layout_width="182dp"
+                android:layout_height="320dp"
+                android:src="@drawable/exploremall"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/static3"
+        android:layout_toRightOf="@id/static2"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/salon"
+            android:layout_width="146dp"
+            android:layout_height="200dp"
+            android:src="@drawable/salon"/>
+
+        <ImageView
+            android:id="@+id/electronics"
+            android:layout_toRightOf="@id/salon"
+            android:layout_marginLeft="5dp"
+            android:layout_width="146dp"
+            android:layout_height="200dp"
+            android:src="@drawable/electronics"/>
+
+        <ImageView
+            android:id="@+id/fashion"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/electronics"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:src="@drawable/fashion"/>
+
+        <ImageView
+            android:id="@+id/entertainment"
+            android:layout_below="@+id/fashion"
+            android:layout_marginTop="10dp"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/entertainment"/>
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

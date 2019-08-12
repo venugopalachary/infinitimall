@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+     >
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="67dp"
+            android:layout_alignParentLeft="true"
+            app:srcCompat="@drawable/storelocation" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Store Name"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/imageView"
+            android:padding="2dp"
+            android:textColor="#4d4d4d" />
+
+
+        <ImageView
+            android:id="@+id/discountimage"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/discount"
+            android:layout_toLeftOf="@+id/floor"/>
+
+        <TextView
+            android:id="@+id/floor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/floorbg"
+            android:layout_toLeftOf="@+id/imageView1"
+            android:padding="2dp"
+            android:text="Floor Number"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#4d4d4d"
+            android:textStyle="bold" />
+
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="67dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@drawable/navico" />
+
+</RelativeLayout>
