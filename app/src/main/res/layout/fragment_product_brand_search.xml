@@ -6,35 +6,45 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-android:background="#F3F3F3"
+
 tools:context=".ProductBrandSearchFragment">
 
-<LinearLayout
+<RelativeLayout
+    android:background="#F3F3F3"
     android:id="@+id/searchoptions"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+   >
+    <ImageButton
+        android:id="@+id/speechbutton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="5dp"
+        app:srcCompat="@drawable/mic" />
+
     <EditText
+        android:layout_toRightOf="@+id/speechbutton"
         android:id="@+id/usersintrest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:ems="15"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="7dp"
+        android:ems="12"
         android:inputType="textPersonName"
         android:text=""
         android:textSize="45sp"/>
 
     <ImageButton
+        android:layout_toRightOf="@+id/usersintrest"
         android:id="@+id/searchbutton"
-        android:layout_width="90dp"
-        android:layout_height="80dp"
-        android:layout_alignParentRight="true"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/searchicon" />
-</LinearLayout>
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/search" />
+</RelativeLayout>
 
 <ListView
+    android:background="#F3F3F3"
     android:layout_below="@+id/searchoptions"
     android:id="@+id/list"
     android:layout_width="match_parent"

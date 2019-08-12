@@ -168,7 +168,7 @@ public class ProductBrandSearchFragment extends Fragment implements  View.OnClic
             case R.id.backbutton:
                 //    Toast.makeText(getActivity().getApplicationContext(), v.getId()+"", Toast.LENGTH_SHORT).show();
                 // Create new fragment and transaction
-                android.app.Fragment customerData = new HomeFragment();
+                android.app.Fragment customerData = new DummyMapFragment();
                 FragmentTransaction transaction = getActivity().getFragmentManager().beginTransaction();
                 // Replace whatever is in the fragment_container view with this fragment,
                 // and add the transaction to the back stack
@@ -324,12 +324,7 @@ public class ProductBrandSearchFragment extends Fragment implements  View.OnClic
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 //  Toast.makeText( getApplicationContext(),floor.get( position ),Toast.LENGTH_LONG ).show();
 
-
-                                Intent dummymap=new Intent(getActivity(), MainActivity.class);
-                                //   coupongo.putExtra("brandname",brandname);
-                                //  coupongo.putExtra("brandid",selectedbrandid);
-                                dummymap.putExtra("brandname",brandname.get(position));
-                                startActivity(dummymap);
+                                loadFragment(new DummyMapFragment());
                             }
                         } );
 
@@ -351,5 +346,22 @@ public class ProductBrandSearchFragment extends Fragment implements  View.OnClic
 
         //adding our stringrequest to queue
         Volley.newRequestQueue(getActivity()).add(stringRequest);
+    }
+
+
+    //here we are loading fragments
+    private boolean loadFragment(Fragment fragment) {
+        //switching fragment
+        if (fragment != null) {
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    /*  .addToBackStack(null)*/
+                    .commit();
+
+
+            return true;
+        }
+        return false;
     }
 }

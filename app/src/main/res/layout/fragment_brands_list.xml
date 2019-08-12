@@ -10,13 +10,13 @@
 
     <GridView
         android:id="@+id/gridView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="820dp"
+        android:layout_height="620dp"
         android:layout_alignParentTop="true"
         android:background="#e5e5e5"
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
-        android:numColumns="5">
+        android:numColumns="4">
     </GridView>
 
     <Button

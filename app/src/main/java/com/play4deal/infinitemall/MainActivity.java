@@ -22,6 +22,8 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 
+import com.bumptech.glide.Glide;
+
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     private Toast toast;
     private ImageView searchbarbutton;
     private Timer timer;
-
+    private ImageView backgroundImageView;
     ViewPager moviesViewPager,eventsviewPager;
     int images[] = {R.drawable.saaho, R.drawable.war, R.drawable.mangal};
     int events[]={R.drawable.anniversary,R.drawable.dance,R.drawable.food};
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        backgroundImageView = findViewById(R.id.bgimage);
+        Glide.with(this).load(R.raw.bggif).into(backgroundImageView);
         searchbarbutton=findViewById(R.id.searchbarbutton);
         searchbarbutton.setOnClickListener(new View.OnClickListener() {
             @Override

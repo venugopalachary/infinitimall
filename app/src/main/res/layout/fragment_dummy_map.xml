@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DummyMapFragment">
+
+
+    <ImageView
+        android:layout_alignParentTop="true"
+        android:layout_width="820dp"
+        android:layout_height="620dp"
+        android:src="@drawable/dummymap"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:id="@+id/imageView"/>
+
+
+
+    <Button
+        android:id="@+id/qrcode"
+        android:layout_width="67dp"
+        android:layout_height="67dp"
+        android:layout_margin="30dp"
+        android:layout_alignParentRight="true"
+       android:layout_above="@+id/sms"
+        android:background="@drawable/qrcode"
+        android:text="" />
+
+    <Button
+        android:id="@+id/sms"
+        android:layout_width="67dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginRight="30dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/smsicon"
+        android:text="" />
+
+
+
+
+    <Button
+        android:id="@+id/backbutton"
+        android:layout_width="67dp"
+        android:layout_height="67dp"
+        android:layout_margin="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/homeicon"
+        android:text="" />
+
+</RelativeLayout>
