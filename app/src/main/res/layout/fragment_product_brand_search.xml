@@ -6,7 +6,6 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-
 tools:context=".ProductBrandSearchFragment">
 
 <RelativeLayout
@@ -15,11 +14,14 @@ tools:context=".ProductBrandSearchFragment">
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
    >
-    <ImageButton
+    <ImageView
         android:id="@+id/speechbutton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="2dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
         app:srcCompat="@drawable/mic" />
 
     <EditText
@@ -28,18 +30,20 @@ tools:context=".ProductBrandSearchFragment">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="7dp"
-        android:ems="12"
+        android:layout_margin="4dp"
+        android:ems="15"
         android:inputType="textPersonName"
         android:text=""
-        android:textSize="45sp"/>
+        android:textSize="40sp"/>
 
-    <ImageButton
+    <ImageView
         android:layout_toRightOf="@+id/usersintrest"
         android:id="@+id/searchbutton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
         app:srcCompat="@drawable/search" />
 </RelativeLayout>
 
@@ -47,10 +51,9 @@ tools:context=".ProductBrandSearchFragment">
     android:background="#F3F3F3"
     android:layout_below="@+id/searchoptions"
     android:id="@+id/list"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="100dp"
-    android:layout_marginRight="80dp"
+    android:layout_width="820dp"
+    android:layout_height="538dp"
+
     >
 </ListView>
 

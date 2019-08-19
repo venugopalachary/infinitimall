@@ -45,7 +45,7 @@ public class DealsActivityFragment extends Fragment implements View.OnClickListe
     private DealAdapter dealAdapter;
     private RecyclerView recyclerView;
     List<Deals> deals_list;
-    private Button backbutton;
+    private Button backbutton,buynow;
 
     private OnFragmentInteractionListener mListener;
 
@@ -80,6 +80,7 @@ public class DealsActivityFragment extends Fragment implements View.OnClickListe
         v=inflater.inflate(R.layout.fragment_deals_activity, container, false);
         recyclerView=v.findViewById( R.id.recyclerView );
         backbutton =v.findViewById(R.id.backbutton);
+        buynow=recyclerView.findViewById(R.id.buynow);
         backbutton.setOnClickListener(this);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -187,7 +188,7 @@ public class DealsActivityFragment extends Fragment implements View.OnClickListe
             case R.id.backbutton:
                 //  Toast.makeText(getActivity().getApplicationContext(), v.getId()+"", Toast.LENGTH_SHORT).show();
                 // Create new fragment and transaction
-                Fragment customerData = new HomeFragment();
+                Fragment customerData = new DummyMapFragment();
                 FragmentTransaction transaction = getActivity().getFragmentManager().beginTransaction();
                 // Replace whatever is in the fragment_container view with this fragment,
                 // and add the transaction to the back stack
@@ -196,7 +197,22 @@ public class DealsActivityFragment extends Fragment implements View.OnClickListe
                 // Commit the transaction
                 transaction.commit();
                 break;
-        }
+
+
+        case R.id.buynow:
+        //  Toast.makeText(getActivity().getApplicationContext(), v.getId()+"", Toast.LENGTH_SHORT).show();
+        // Create new fragment and transaction
+        Fragment buynow = new DummyMapFragment();
+        FragmentTransaction buynowtransaction = getActivity().getFragmentManager().beginTransaction();
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack
+            buynowtransaction.replace(R.id.fragment_container, buynow);
+            buynowtransaction.addToBackStack(null);
+        // Commit the transaction
+            buynowtransaction.commit();
+        break;
+    }
+
     }
 
 

@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
@@ -27,7 +29,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private String mParam1;
     private String mParam2;
 
-    private ImageView exploremall,shopping,dine,deals,salon,electronics,fashion,entertainment;
+    private ImageView exploremall,shopping,dine,deals,salon,electronics,fashion,entertainment,amenities,searchbar;
 
     private View v;
 
@@ -59,23 +61,27 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         v=inflater.inflate(R.layout.fragment_home, container, false);
         exploremall=v.findViewById(R.id.exploremall);
+        searchbar=v.findViewById(R.id.search_bar);
         shopping=v.findViewById(R.id.shopping);
         dine=v.findViewById(R.id.dine);
         deals=v.findViewById(R.id.deals);
-        salon=v.findViewById(R.id.salon);
-        electronics=v.findViewById(R.id.electronics);
+        amenities=v.findViewById(R.id.amenities);
+
         fashion=v.findViewById(R.id.fashion);
         entertainment=v.findViewById(R.id.entertainment);
 
         bundle=new Bundle();
 
+        Glide.with(this).load(R.raw.searchgif).into(searchbar);
+
          // click listeners
+        searchbar.setOnClickListener(this);
         exploremall.setOnClickListener(this);
         shopping.setOnClickListener(this);
         dine.setOnClickListener(this);
         deals.setOnClickListener(this);
-        salon.setOnClickListener(this);
-        electronics.setOnClickListener(this);
+//        salon.setOnClickListener(this);
+        amenities.setOnClickListener(this);
         fashion.setOnClickListener(this);
         entertainment.setOnClickListener(this);
 
@@ -94,12 +100,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
+        /*if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
-        }
+        }*/
     }
 
     @Override
@@ -178,6 +184,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                // Commit the transaction
               dealsactivitytransaction.commit();
                break;
+/*
 
            case R.id.salon:
                //  Toast.makeText(getActivity().getApplicationContext(), v.getId()+"", Toast.LENGTH_SHORT).show();
@@ -210,6 +217,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                // Commit the transaction
                electronicstransaction.commit();
                break;
+*/
 
            case R.id.fashion:
                //  Toast.makeText(getActivity().getApplicationContext(), v.getId()+"", Toast.LENGTH_SHORT).show();
@@ -243,12 +251,41 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                entertainmenttransaction.commit();
                break;
 
-
+           case R.id.amenities:
+               //  Toast.makeText(getActivity().getApplicationContext(), v.getId()+"", Toast.LENGTH_SHORT).show();
+               // Create new fragment and transaction
+               Fragment amenities = new DummyMapFragment();
+               FragmentTransaction amenitiestransaction = getActivity().getFragmentManager().beginTransaction();
+               //bundle.putString("category","games");
+              // bundle.putString("sector","games");
+             //  amenities.setArguments(bundle);
+               // Replace whatever is in the fragment_container view with this fragment,
+               // and add the transaction to the back stack
+               amenitiestransaction.replace(R.id.fragment_container, amenities);
+               amenitiestransaction.addToBackStack(null);
+               // Commit the transaction
+               amenitiestransaction.commit();
+               break;
 
            default:
            //     Toast.makeText(getActivity().getApplicationContext(), v.getId()+"", Toast.LENGTH_SHORT).show();
                 break;
 
+           case R.id.search_bar:
+               //  Toast.makeText(getActivity().getApplicationContext(), v.getId()+"", Toast.LENGTH_SHORT).show();
+               // Create new fragment and transaction
+               Fragment search = new ProductBrandSearchFragment();
+               FragmentTransaction searchtransaction = getActivity().getFragmentManager().beginTransaction();
+              // bundle.putString("category","salon");
+            //   bundle.putString("sector","salon");
+             //  salon.setArguments(bundle);
+               // Replace whatever is in the fragment_container view with this fragment,
+               // and add the transaction to the back stack
+               searchtransaction.replace(R.id.fragment_container, search);
+               searchtransaction.addToBackStack(null);
+               // Commit the transaction
+               searchtransaction.commit();
+               break;
         }
     }
 

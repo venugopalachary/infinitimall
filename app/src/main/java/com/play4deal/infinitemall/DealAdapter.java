@@ -1,5 +1,10 @@
 package com.play4deal.infinitemall;
 
+
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -10,15 +15,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+
 public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder>{
     List<Deals> deals_list;
     private Context context;
+    private View view;
 
     public DealAdapter(Context context, List<Deals> deals_list) {
         this.context = context;
@@ -27,7 +35,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder>{
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_list,parent,false);
+        view= LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_list,parent,false);
         ViewHolder viewHolder=new ViewHolder(view);
         return viewHolder;
     }
@@ -51,13 +59,28 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder>{
             @Override
             public void onClick(View v) {
                 //Toast.makeText(v.getContext(),"youclicked  " +   dealData.getCouponcode(),Toast.LENGTH_LONG).show();
-                Intent coupongo=new Intent(context, MainActivity.class);
+              /* Intent coupongo=new Intent(context, DummyMapFragment.class);
                 coupongo.putExtra("brandname",dealData.getBrandname());
                 coupongo.putExtra("couponcode",dealData.getCouponcode());
                 coupongo.putExtra( "enddate",dealData.getValiddate());
-                coupongo.putExtra( "description",dealData.getDealdescription() );
-                coupongo.putExtra( "rupees",dealData.getRupees() );
+              //  coupongo.putExtra( "description",dealData.getDealdescription() );
+            //    coupongo.putExtra( "rupees",dealData.getRupees() );
                context.startActivity(coupongo);
+*/
+
+                MainActivity myActivity = (MainActivity)context;
+
+                FragmentManager fm = myActivity.getFragmentManager();
+                // replace
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.fragment_container, new DummyMapFragment());
+                ft.commit();
+
+               // view.beginTransaction().replace(R.id.fragment_container,new DummyMapFragment()).addToBackStack(null).commit();
+
+             //   loadFragment(new DummyMapFragment());
+
+
             }
         });
         holder.tc.setOnClickListener( new View.OnClickListener() {
@@ -124,6 +147,8 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder>{
 
             //  brandid= itemView.findViewById(R.id.brandid);
 
+
+
         }
 
 
@@ -136,5 +161,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder>{
 */
         }
     }
+
+
 
 }

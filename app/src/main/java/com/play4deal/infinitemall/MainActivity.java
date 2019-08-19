@@ -38,28 +38,31 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     private Context context;
     Calendar calendar;
     private Toast toast;
-    private ImageView searchbarbutton;
+    private ImageView feedback;
     private Timer timer;
     private ImageView backgroundImageView;
     ViewPager moviesViewPager,eventsviewPager;
-    int images[] = {R.drawable.saaho, R.drawable.war, R.drawable.mangal};
+    int images[] = {R.drawable.daniel, R.drawable.kfc, R.drawable.tanshiq};
     int events[]={R.drawable.anniversary,R.drawable.dance,R.drawable.food};
     MoviesPagerAdapter myCustomPagerAdapter;
     EventsPagerAdapter eventsPagerAdapter;
     int currenteventIndex=0;
     private int currentPage = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         backgroundImageView = findViewById(R.id.bgimage);
-        Glide.with(this).load(R.raw.bggif).into(backgroundImageView);
-        searchbarbutton=findViewById(R.id.searchbarbutton);
-        searchbarbutton.setOnClickListener(new View.OnClickListener() {
+      //  Glide.with(this).load(R.raw.bggif).into(backgroundImageView);
+        feedback=findViewById(R.id.feedback);
+        Glide.with(this).load(R.raw.feedback).into(feedback);
+
+        feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new ProductBrandSearchFragment());
+                loadFragment(new FeedbackFragment());
             }
         });
 

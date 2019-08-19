@@ -3,13 +3,14 @@ package com.play4deal.infinitemall;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
 
-
+import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -34,7 +36,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class ProductBrandSearchFragment extends Fragment implements  View.OnClickListener{
@@ -43,12 +48,14 @@ public class ProductBrandSearchFragment extends Fragment implements  View.OnClic
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private static final int REQ_CODE_SPEECH_INPUT = 100;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private Button backbutton;
-    private ImageButton searchbutton;
+    private ImageView searchbutton,speechbutton;
     ListView listView;
     SearchView searchView;
     private ArrayList<String> brandname;
@@ -100,6 +107,13 @@ public class ProductBrandSearchFragment extends Fragment implements  View.OnClic
         v=inflater.inflate(R.layout.fragment_product_brand_search, container, false);
         backbutton = v.findViewById(R.id.backbutton);
         searchbutton=v.findViewById(R.id.searchbutton);
+        speechbutton=v.findViewById(R.id.speechbutton);
+        speechbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startVoiceInput();
+            }
+        });
         backbutton.setOnClickListener(this);
         listView=(ListView)v.findViewById(R.id.list);
         usersintrest=v.findViewById(R.id.usersintrest);
@@ -242,11 +256,13 @@ public class ProductBrandSearchFragment extends Fragment implements  View.OnClic
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     //   Toast.makeText( getApplicationContext(),floor.get( position ),Toast.LENGTH_LONG ).show();
 
-                                    Intent dummymap=new Intent(getActivity(), MainActivity.class);
+                               /*     Intent dummymap=new Intent(getActivity(), MainActivity.class);
                                     //   coupongo.putExtra("brandname",brandname);
                                     //  coupongo.putExtra("brandid",selectedbrandid);
                                     dummymap.putExtra("brandname",brandnamefilter.get(position));
-                                    startActivity(dummymap);
+                                    startActivity(dummymap);*/
+
+                                    loadFragment(new DummyMapFragment());
                                 }
                             } );
 
@@ -346,6 +362,48 @@ public class ProductBrandSearchFragment extends Fragment implements  View.OnClic
 
         //adding our stringrequest to queue
         Volley.newRequestQueue(getActivity()).add(stringRequest);
+    }
+
+
+
+
+
+
+
+    private void startVoiceInput() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Hello, How can I help you?");
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+        } catch (ActivityNotFoundException a) {
+
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && null != data) {
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    usersintrest.setText(result.get(0));
+                    if(result.get(0).toString().length()<=0)
+                    {
+                        Toast.makeText(getActivity().getApplicationContext()," Please Fill Data",Toast.LENGTH_LONG).show();
+                    }else
+                    {
+                        loadFilteredBrands(searchwordphrase);
+                    }
+                  //  mVoiceInputTv.setText(result.get(0));
+                }
+                break;
+            }
+
+        }
     }
 
 

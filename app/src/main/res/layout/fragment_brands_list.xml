@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".BrandsListFragment">
 
 
 
     <GridView
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
         android:id="@+id/gridView"
         android:layout_width="820dp"
         android:layout_height="620dp"
