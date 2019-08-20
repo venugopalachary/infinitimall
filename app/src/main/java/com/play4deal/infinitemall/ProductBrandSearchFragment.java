@@ -396,7 +396,7 @@ public class ProductBrandSearchFragment extends Fragment implements  View.OnClic
                         Toast.makeText(getActivity().getApplicationContext()," Please Fill Data",Toast.LENGTH_LONG).show();
                     }else
                     {
-                        loadFilteredBrands(searchwordphrase);
+                        loadFilteredBrands(result.get(0).toString());
                     }
                   //  mVoiceInputTv.setText(result.get(0));
                 }
