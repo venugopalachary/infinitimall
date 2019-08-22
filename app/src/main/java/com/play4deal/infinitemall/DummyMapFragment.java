@@ -3,19 +3,36 @@ package com.play4deal.infinitemall;
 
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
 
-
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.EditText;
 
+import androidx.appcompat.app.AlertDialog;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.onurkaganaldemir.ktoastlib.KToast;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -35,10 +52,14 @@ public class DummyMapFragment extends Fragment implements  View.OnClickListener 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private EditText userenterednumber;
 
     private OnFragmentInteractionListener mListener;
     private View v;
-    private Button backbutton;
+    private Button backbutton,sms,qrcode;
+    private AlertDialog alertDialog;
+    private RequestQueue mQueue;
+    private WebView webview;
 
     public DummyMapFragment() {
         // Required empty public constructor
@@ -76,7 +97,21 @@ public class DummyMapFragment extends Fragment implements  View.OnClickListener 
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         v=inflater.inflate(R.layout.fragment_dummy_map, container, false);
+        webview=v.findViewById(R.id.webview);
+        webview.getSettings().setJavaScriptEnabled(true);
+        webview.loadUrl("https://maps.mapwize.io/#/f/p/infinitimall/vivo_mobile/t/p/infinitimall/faces?k=8b40023a313067cc&z=20.824&embed=true&menu=false&venueId=5d5b8e81cddcab00160347d8&organizationId=5d29996b71292f00165d4c83&follow=true");
+        webview.setWebViewClient(new WebViewClient());
         backbutton=v.findViewById(R.id.backbutton);
+        sms=v.findViewById(R.id.sms);
+        qrcode=v.findViewById(R.id.qrcode);
+        mQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        sms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCustomDialog();
+            }
+        });
+        qrcode.setOnClickListener(this);
         backbutton.setOnClickListener(this);
         return v;
     }
@@ -145,5 +180,95 @@ public class DummyMapFragment extends Fragment implements  View.OnClickListener 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private void showCustomDialog() {
+        //before inflating the custom alert dialog layout, we will get the current activity viewgroup
+        ViewGroup viewGroup = getActivity().findViewById(android.R.id.content);
+
+        //then we will inflate the custom alert dialog xml that we created
+        View dialogView = LayoutInflater.from(getActivity().getApplicationContext()).inflate(R.layout.smsrouteshare, viewGroup, false);
+
+        Button submitbutton=dialogView.findViewById(R.id.submitbutton);
+
+        userenterednumber=dialogView.findViewById(R.id.mobilenumber);
+
+
+        //Now we need an AlertDialog.Builder object
+        AlertDialog.Builder builder = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            builder = new AlertDialog.Builder(getContext());
+        }
+
+        //setting the view of the builder to our custom view that we already inflated
+        builder.setView(dialogView);
+
+        //finally creating the alert dialog and displaying it
+        alertDialog = builder.create();
+        alertDialog.show();
+
+        submitbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String mn=userenterednumber.getText().toString();
+                //       Log.i("userenteredotp",userenteredotp);
+                if(mn.isEmpty() ) {
+                    KToast.warningToast(getActivity(), "Please enter a mobilenumber.", Gravity.TOP, KToast.LENGTH_AUTO);
+
+                    //   Toast.makeText(getApplicationContext(),"please enter a otp",Toast.LENGTH_LONG).show();
+                }
+
+                if (mn.length() < 10 || mn.length() > 10) {
+
+                    KToast.warningToast(getActivity(), "Please Enter a 10-digit  Number.", Gravity.TOP, KToast.LENGTH_AUTO);
+
+                }else
+                {
+                    sendingUserData(mn);
+                    alertDialog.dismiss();
+                }
+
+
+            }
+        });
+    }
+
+    private void sendingUserData(final String mobilenumber) {
+
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.shareroutesms),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        MainActivity myActivity = (MainActivity)getActivity();
+
+                        FragmentManager fm = myActivity.getFragmentManager();
+                        // replace
+                        FragmentTransaction ft = fm.beginTransaction();
+                        ft.replace(R.id.fragment_container, new FeedbackFragment());
+                        ft.commit();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //     Log.i("error",error+"");
+            }
+        }) {
+            //adding parameters to the request
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("mobilenumber", mobilenumber);
+                return params;
+            }
+        };
+        // Add the request to the RequestQueue.
+        mQueue.add(stringRequest);
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 2, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
     }
 }

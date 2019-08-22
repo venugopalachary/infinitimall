@@ -14,6 +14,7 @@ import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -136,6 +137,10 @@ public class ProductBrandSearchFragment extends Fragment implements  View.OnClic
         searchbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // hiding the keyboard
+                InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
                 searchwordphrase=usersintrest.getText().toString();
                 if(searchwordphrase.length()<=0)
                 {

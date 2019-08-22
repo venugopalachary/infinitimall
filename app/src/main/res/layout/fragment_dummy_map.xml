@@ -6,14 +6,12 @@
     tools:context=".DummyMapFragment">
 
 
-    <ImageView
+
+    <WebView
         android:layout_alignParentTop="true"
+        android:id="@+id/webview"
         android:layout_width="820dp"
-        android:layout_height="620dp"
-        android:src="@drawable/dummymap"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        android:id="@+id/imageView"/>
+        android:layout_height="620dp" />
 
 
 

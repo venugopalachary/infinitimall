@@ -275,7 +275,7 @@ public class BrandsListFragment extends Fragment implements View.OnClickListener
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                    Toast.makeText(getActivity(),brandnames.get(position)+"",Toast.LENGTH_LONG).show();
+                //    Toast.makeText(getActivity(),brandnames.get(position)+"",Toast.LENGTH_LONG).show();
                 //  String brandname=brandnames.get(position);
                 //    String selectedbrandid=brandid.get(position);
                 /*Intent dummymap=new Intent(getActivity(), DummyMapFragment.class);

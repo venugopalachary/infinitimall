@@ -66,7 +66,8 @@ public class ShoppingMapFragment extends Fragment  implements  View.OnClickListe
         backbutton=v.findViewById(R.id.backbutton);
         backbutton.setOnClickListener(this);
         webview.getSettings().setJavaScriptEnabled(true);
-        webview.loadUrl("file:///android_asset/index.html");
+      //  webview.loadUrl("file:///android_asset/index.html");
+        webview.loadUrl("https://maps.mapwize.io/#/v/infinitimall?k=8b40023a313067cc&u=default_universe&l=en&z=17&embed=true&menu=false&venueId=5d5b8e81cddcab00160347d8&organizationId=5d29996b71292f00165d4c83&follow=true");
         webview.setWebViewClient(new WebViewClient());
         backbutton =v.findViewById(R.id.backbutton);
         return v;

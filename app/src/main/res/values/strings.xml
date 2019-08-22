@@ -3,7 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="apppromolink">https://www.play4deal.com/inorbitmall/apppromotion.php</string>
+    <string name="shareroutesms">https://www.play4deal.com/inorbitmall/shareroutesms.php</string>
     <string name="brandsList">https://www.play4deal.com/inorbitmall/brandslist.php</string>
     <string name="filteredBrandsList">https://www.play4deal.com/inorbitmall/searchwisebrands.php</string>
     <string name="GRID_URL">https://www.play4deal.com/androidapilv/gridapi/fetch_brands.php</string>
